@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base target="_top">
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  <!-- The CSS package above applies Google styling to buttons and other elements. -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <?!= include('stylesheet'); ?>
+
+</head>
+
+<body>
+
+  <div class="sidebar branding-below">
+
+<!--
+    <div class="block dropdowns">
+      <h3>Select type of brief:</h3>
+      <select id="briefs">
+        <option value="Petition">Petition</option>
+        <option value="BriefInOpposition">Brief in Opposition</option>
+        <option value="ReplyBrief">Reply Brief</option>
+        <option value="AmicusBrief">Amicus Brief</option>
+      </select>
+    </div>
+-->    
+    <div class="block">
+      <h3>Select the section you are typing:</h3>
+      <div id="sections">
+        <!--section drop-down sits here-->
+
+      </div>
+    </div>
+    <hr class="dashed">
+    <?!= include('snippets_index') ?>
+    <?!= include('snippets_brief') ?>
+
+
+  </div>
+
+
+  <div class="sidebar bottom">
+    <!-- The logo is from www.LookingGlass.legal -->
+    <a href="https://www.lookingglass.legal/" target="_blank" />
+    <img alt="Looking Glass logo" class="logo"
+      src="https://static1.squarespace.com/static/5ec02659dfef5d1e25c8b869/t/5ec96e165699191ae92aa0b7/1599766703393/?format=1500w"
+      width="150" height="*">
+  </div>
+
+
+  <?!= include('javascript'); ?>
+
+</body>
+
+</html>

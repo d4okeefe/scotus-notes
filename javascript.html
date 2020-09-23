@@ -1,0 +1,229 @@
+<script>
+  console.log("testing app");
+
+
+  // add sections dropdown
+  $(document).ready(function () {
+    var sections;
+    var sec_index = [{
+        value: 'qp',
+        text: 'Question Presented',
+        active: true
+      },
+      {
+        value: 'lop',
+        text: 'List of Parties',
+        active: true
+      },
+      {
+        value: 'cd',
+        text: 'Corporate Disclosure',
+        active: true
+      },
+      {
+        value: 'rc',
+        text: 'Related Cases',
+        active: true
+      },
+      {
+        value: 'ob',
+        text: 'Opinions Below',
+        active: true
+      },
+      {
+        value: 'js',
+        text: 'Jurisdictional Statement',
+        active: true
+      },
+      {
+        value: 'csp',
+        text: 'Constitutional & Statutory Provisions',
+        active: true
+      },
+      {
+        value: 'soc',
+        text: 'Statement of the Case',
+        active: true
+      },
+      {
+        value: 'arg',
+        text: 'Argument',
+        active: true
+      },
+      {
+        value: 'conc',
+        text: 'Conclusion',
+        active: true
+      },
+      {
+        value: 'sig',
+        text: 'Signature Block',
+        active: true
+      }
+    ];
+    var select_secs =
+      document.createElement('select'),
+      option_secs;
+
+    select_secs.id = "select_secs";
+    select_secs.className += "dropdowns";
+
+    for (i = 0; i < sec_index.length; i += 1) {
+      option_secs = document.createElement('option');
+      option_secs.setAttribute('value', sec_index[i].value);
+      option_secs.appendChild(document.createTextNode(sec_index[i].text));
+      select_secs.appendChild(option_secs);
+      //console.log(option_secs);
+    }
+
+//    function loadIndexItems() {
+//      var guidanceitems = $(this).hasClass("guidanceTitle");
+//      console.log(guidanceitems);
+//      $(guidanceitems).each(function (k, v) {
+//        console.log("found");
+//        console.log(v);
+//      });
+//    }
+//    loadIndexItems();
+
+//    function initializeView(){
+//      var value = $(this).val();
+//      $(".guidanceSnippet").hide();
+//      if (value === "qp") {
+//        $(".qp_item").show();
+//      }      
+//    }
+//    initializeView();
+
+    $("#sections").append(select_secs);
+    
+    // response to dropdown selection
+    $('#select_secs').change(function () {
+      var value = $(this).val();
+      $(".guidanceSnippet").hide();
+      if (value === "qp") {
+        $(".qp_item").show();
+      } else if (value === "lop") {
+        $(".lop_item").show();
+      } else if (value === "cd") {
+        $(".cd_item").show();
+      } else if (value === "rc") {
+        $(".rc_item").show();
+      } else if (value === "ob") {
+        $(".ob_item").show();
+      } else if (value === "js") {
+        $(".js_item").show();
+      } else if (value === "csp") {
+        $(".csp_item").show();
+      } else if (value === "soc") {
+        $(".soc_item").show();
+      } else if (value === "arg") {
+        $(".arg_item").show();
+      } else if (value === "conc") {
+        $(".conc_item").show();
+      } else if (value === "sig") {
+        $(".sig_item").show();
+      }
+    });
+    
+    // buttons
+    $qp = $('<div class="block qp_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-qp-text" title="Click here to add boilerplate text to the document.">Insert Question Presented</button>' +
+      '</div>').insertAfter(".qp_item:last").show();
+    $lop = $('<div class="block lop_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-lop-text" title="Click here to add boilerplate text to the document.">Insert List of Parties</button>' +
+      '</div>').insertAfter(".lop_item:last").hide();
+    $cd = $('<div class="block cd_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-cd-text" title="Click here to add boilerplate text to the document.">Insert Corporate Disclosure</button>' +
+      '</div>').insertAfter(".cd_item:last").hide();
+    $rc = $('<div class="block rc_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-rc-text" title="Click here to add boilerplate text to the document.">Insert Related Cases</button>' +
+      '</div>').insertAfter(".rc_item:last").hide();
+    $ob = $('<div class="block ob_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-ob-text" title="Click here to add boilerplate text to the document.">Insert Opinions Below</button>' +
+      '</div>').insertAfter(".ob_item:last").hide();
+    $js = $('<div class="block js_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-js-text" title="Click here to add boilerplate text to the document.">Insert Jurisdictional Statement</button>' +
+      '</div>').insertAfter(".js_item:last").hide();
+    $csp = $('<div class="block csp_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-csp-text" title="Click here to add boilerplate text to the document.">Insert Provisions</button>' +
+      '</div>').insertAfter(".csp_item:last").hide();
+    $soc = $('<div class="block soc_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-soc-text" title="Click here to add boilerplate text to the document.">Insert Statement</button>' +
+      '</div>').insertAfter(".soc_item:last").hide();
+    $arg = $('<div class="block arg_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-arg-text" title="Click here to add boilerplate text to the document.">Insert Argument</button>' +
+      '</div>').insertAfter(".arg_item:last").hide();
+    $conc = $('<div class="block conc_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-conc-text" title="Click here to add boilerplate text to the document.">Insert Conclusion</button>' +
+      '</div>').insertAfter(".conc_item:last").hide();
+    $sig = $('<div class="block sig_item guidanceSnippet" id="button-bar">' +
+      '<button class="green" id="add-sig-text" title="Click here to add boilerplate text to the document.">Insert Signature</button>' +
+      '</div>').insertAfter(".sig_item:last").hide();
+
+
+    // Add boilerplate text to document from sidebar
+    function addQpText() {
+      google.script.run.withSuccessHandler().addQP();
+    }
+    document.getElementById('add-qp-text').onclick = addQpText;
+
+    function addLopText() {
+      google.script.run.withSuccessHandler().addLOP();
+    }
+    document.getElementById('add-lop-text').onclick = addLopText;
+
+    function addCdText() {
+      google.script.run.withSuccessHandler().addCD();
+    }
+    document.getElementById('add-cd-text').onclick = addCdText;
+
+    function addRcText() {
+      google.script.run.withSuccessHandler().addRC();
+    }
+    document.getElementById('add-rc-text').onclick = addRcText;
+
+    function addObText() {
+      google.script.run.withSuccessHandler().addOB();
+    }
+    document.getElementById('add-ob-text').onclick = addObText;
+
+    function addJsText() {
+      google.script.run.withSuccessHandler().addJS();
+    }
+    document.getElementById('add-js-text').onclick = addJsText;
+
+    function addCspText() {
+      google.script.run.withSuccessHandler().addCSP();
+    }
+    document.getElementById('add-csp-text').onclick = addCspText;
+
+    function addSocText() {
+      google.script.run.withSuccessHandler().addSOC();
+    }
+    document.getElementById('add-soc-text').onclick = addSocText;
+
+    function addArgText() {
+      google.script.run.withSuccessHandler().addARG();
+    }
+    document.getElementById('add-arg-text').onclick = addArgText;
+
+    function addConcText() {
+      google.script.run.withSuccessHandler().addCONC();
+    }
+    document.getElementById('add-conc-text').onclick = addConcText;
+
+    function addSigText() {
+      google.script.run.withSuccessHandler().addSIG();
+    }
+    document.getElementById('add-sig-text').onclick = addSigText;
+  });
+  
+    // set initial view
+  function initializeView(){
+    $(".guidanceSnippet").hide();
+    $(".qp_item").show();
+  }
+  initializeView();
+  
+</script>
