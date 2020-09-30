@@ -126,14 +126,6 @@ function addARG(){
   para = body.appendParagraph("\n");
   para.setAttributes(paragraphStyle());
 }
-function addARG(){
-  var doc = DocumentApp.getActiveDocument();
-  var body = doc.getBody();
-  var para = body.appendParagraph("\nCONCLUSION");
-  para.setAttributes(headingStyle());
-  para = body.appendParagraph("\n");
-  para.setAttributes(paragraphStyle());
-}
 function addSIG(){
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
