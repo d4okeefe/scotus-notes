@@ -2,23 +2,46 @@
  * onOpen(e) & onInstall(e)
  * Basic sidebar setup
  */
+function pullData() {
+  var page = UrlFetchApp.fetch('https://storage.googleapis.com/scotus-notes/lg.json');
+  var content = page.getContentText();
+  Logger.log(page.getContent());
+  
+}
+function logTest(){
+  Logger.log("LOGGING");
+}
+
+
+
+
 function onOpen(e) {
-  DocumentApp.getUi().createAddonMenu()
+  DocumentApp
+      .getUi()
+      .createAddonMenu()
       .addItem('Open guidance', 'showSidebar')
       .addToUi();
 }
 function onInstall(e) {
   onOpen(e);
 }
+
 function showSidebar() {
   var ui = HtmlService.createTemplateFromFile('sidebar').evaluate();
   ui.setTitle('Guidance for a Supreme Court petition');
   DocumentApp.getUi().showSidebar(ui);
 }
-function doGet() {
-  return HtmlService.createHtmlOutputFromFile('sidebar');
-}
 
+
+/**
+ *
+ */
+function getIndexFromBucket(){
+  return UrlFetchApp.fetch('https://storage.googleapis.com/scotus-notes/lg_brief.html').getContentText();
+}
+function getBriefFromBucket(){
+  return UrlFetchApp.fetch('https://storage.googleapis.com/scotus-notes/lg_index.html').getContentText();
+}
 /**
  * include(filename)
  * Allows for multiple html files in script

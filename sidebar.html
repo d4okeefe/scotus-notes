@@ -35,8 +35,9 @@
       </div>
     </div>
     <hr class="dashed">
-    <?!= include('snippets_index') ?>
-    <?!= include('snippets_brief') ?>
+    <?!= getIndexFromBucket(); ?>
+    <?!= getBriefFromBucket(); ?>
+
 
 
   </div>
@@ -52,6 +53,7 @@
 
 
   <?!= include('javascript'); ?>
+
 
 </body>
 
