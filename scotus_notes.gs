@@ -6,12 +6,58 @@ function pullData() {
   var page = UrlFetchApp.fetch('https://storage.googleapis.com/scotus-notes/lg.json');
   var content = page.getContentText();
   Logger.log(page.getContent());
-  
 }
 function logTest(){
   Logger.log("LOGGING");
 }
 
+function addSectionBelowCurrentParagraph(){
+  var doc = DocumentApp.getActiveDocument();
+  var body = doc.getBody();
+  var cursor = doc.getCursor();
+  var element = cursor.getElement();
+  var parent = element.getParent();
+  
+  var text = "TEST TEXT";
+  body.insertParagraph(parent.getChildIndex(element) + 1, text)
+  
+  cursor.insertText(text)
+}
+
+function addTextAtCursor(){
+  var doc = DocumentApp.getActiveDocument();
+  var body = doc.getBody();
+  var cursor = doc.getCursor();
+  var element = cursor.getElement();
+  var parent = element.getParent();
+  var text = "TEST TEXT";
+  Logger.log("parent.getChildIndex(element) " + parent.getChildIndex(element));
+  //body.insertParagraph(parent.getChildIndex(element) + 1, text)
+  
+  cursor.insertText(text)
+}
+
+function pocket() {
+  // Try to get the current selection in the document. If this fails (e.g.,
+  // because nothing is selected), show an alert and exit the function.
+  var doc = DocumentApp.getActiveDocument();
+  var selection = doc.getSelection();
+  var body = doc.getBody();
+  if (!selection) {
+      DocumentApp.getUi().alert('Cannot find a selection in the document.');
+      return;
+  }
+  var selectedElements = selection.getSelectedElements();
+  var selectedElement = selectedElements[0];
+  //holds the paragraph
+  var paragraph = selectedElement.getElement();
+  //get the index of the paragraph in the body
+  var paragraphIndex = body.getChildIndex(paragraph);
+  //remove the paragraph from the document
+  //to use the insertParagraph() method the paragraph to be inserted must be detached from the doc
+  paragraph.removeFromParent();
+  body.insertParagraph(paragraphIndex, paragraph).setHeading(DocumentApp.ParagraphHeading.HEADING1);
+};
 
 
 
@@ -128,7 +174,14 @@ function addJS(){
 function addCSP(){
   var doc = DocumentApp.getActiveDocument();
   var body = doc.getBody();
-  var para = body.appendParagraph("\nCONSTITUTIONAL & STATUTORY PROVISIONS");
+  var cursor = doc.getCursor();
+  Logger.log("cursor: " + cursor)
+  var element = cursor.getElement();
+  Logger.log("element: " + element)
+  var parent = element.getParent();
+  Logger.log("parent: " + parent);
+  var text = "CONSTITUTIONAL & STATUTORY PROVISIONS";
+  var para = body.insertParagraph(cursor.getElement().getParent().getChildIndex(child) + 1, text);
   para.setAttributes(headingStyle());
   para = body.appendParagraph("\n");
   para.setAttributes(paragraphStyle());
